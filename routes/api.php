@@ -19,4 +19,6 @@ Route::prefix('tags')->group(function () {
     Route::get('/', 'TagController@index');
     Route::post('/', 'TagController@create');
     Route::put('/', 'TagController@update');
+    Route::delete('/', 'TagController@remove');
+
 });

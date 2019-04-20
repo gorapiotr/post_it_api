@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTagRequest;
+use App\Http\Requests\RemoveTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Presenters\Tag\TagsListPresenter;
 use App\Repositories\Tag\TagInterface;
@@ -38,6 +39,13 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->fill($request->all());
         $response = $tag->save();
+        return response()->json(['success' => $response]);
+    }
+
+    public function remove(RemoveTagRequest $request)
+    {
+        $tag = $this->tag->find($request->id);
+        $response = $tag->delete();
         return response()->json(['success' => $response]);
     }
 }
