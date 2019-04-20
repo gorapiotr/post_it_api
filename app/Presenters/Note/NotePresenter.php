@@ -15,7 +15,10 @@ class NotePresenter extends Resource
             'author' => [
                 'name' => $this->user->name,
                 'email' => $this->user->email
-            ]
+            ],
+            'tags' => $this->tags->map(function ($item) {
+                return $item['name'];
+            })
         ];
         return $return;
     }
