@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Presenters\Note\NotesListPresenter;
 use App\Repositories\Note\NoteInterface;
 
 class NoteController extends Controller
@@ -17,6 +18,6 @@ class NoteController extends Controller
     {
         $notes = $this->note->getAll();
 
-        return response()->json($notes);
+        return new NotesListPresenter($notes);
     }
 }
