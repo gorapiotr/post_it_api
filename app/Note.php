@@ -21,6 +21,11 @@ class Note extends Model
         return $this->hasMany('App\Position');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     public function getAll()
     {
         return static::all();

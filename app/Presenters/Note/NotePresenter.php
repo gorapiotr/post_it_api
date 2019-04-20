@@ -25,6 +25,13 @@ class NotePresenter extends Resource
                     'text' => $item->text,
                     'done' => $item->done
                 ];
+            }),
+            'comments' => $this->comments->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'text' => $item->text,
+                    'author' => $item->user->name
+                ];
             })
         ];
         return $return;
