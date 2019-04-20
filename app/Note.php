@@ -16,6 +16,11 @@ class Note extends Model
         return $this->belongsToMany('App\Tag', 'tags_notes');
     }
 
+    public function positions()
+    {
+        return $this->hasMany('App\Position');
+    }
+
     public function getAll()
     {
         return static::all();
