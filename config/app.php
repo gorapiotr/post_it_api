@@ -178,7 +178,8 @@ return [
         /*
          * Repositories Providers...
          */
-        App\Repositories\Note\NoteRepoServiceProvide::class,
+        App\Providers\NoteRepoServiceProvider::class,
+        App\Providers\TagRepoServiceProvider::class,
     ],
 
     /*

@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 Route::prefix('notes')->group(function () {
     Route::get('/', 'NoteController@index');
+});
+
+Route::prefix('tags')->group(function () {
+    Route::get('/', 'TagController@index');
 });

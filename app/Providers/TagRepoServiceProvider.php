@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Note;
+namespace App\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
 
 
-class NoteRepoServiceProvide extends ServiceProvider
+class TagRepoServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -26,6 +26,6 @@ class NoteRepoServiceProvide extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Repositories\Note\NoteInterface', 'App\Repositories\Note\NoteRepository');
+        $this->app->bind('App\Repositories\Tag\TagInterface', 'App\Repositories\Tag\TagRepository');
     }
 }

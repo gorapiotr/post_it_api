@@ -10,4 +10,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Notes');
     }
+
+    public function getAll()
+    {
+        return static::all();
+    }
 }
