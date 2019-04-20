@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +17,5 @@ Route::prefix('notes')->group(function () {
 
 Route::prefix('tags')->group(function () {
     Route::get('/', 'TagController@index');
+    Route::post('/', 'TagController@update');
 });

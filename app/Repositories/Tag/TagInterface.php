@@ -8,4 +8,6 @@ interface TagInterface
 
     public function getAll();
 
+    public function find($id);
+
 }
