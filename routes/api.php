@@ -17,5 +17,6 @@ Route::prefix('notes')->group(function () {
 
 Route::prefix('tags')->group(function () {
     Route::get('/', 'TagController@index');
-    Route::post('/', 'TagController@update');
+    Route::post('/', 'TagController@create');
+    Route::put('/', 'TagController@update');
 });
