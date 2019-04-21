@@ -11,6 +11,18 @@
 |
 */
 
+Route::group([
+    'middleware' => 'api',
+], function () {
+    Route::post('login', 'Auth\AuthController@login');
+    Route::post('signup', 'Auth\AuthController@signup');
+    Route::post('logout', 'Auth\AuthController@logout');
+    Route::post('refresh', 'Auth\AuthController@refresh');
+    Route::post('me', 'Auth\AuthController@me');
+    Route::post('sendPasswordResetLink', 'Auth\ResetPasswordController@sendEmail');
+    Route::post('resetPassword', 'Auth\ChangePasswordController@process');
+});
+
 Route::prefix('notes')->group(function () {
     Route::get('/', 'NoteController@index');
 });
