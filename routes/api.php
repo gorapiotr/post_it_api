@@ -23,11 +23,11 @@ Route::group([
     Route::post('resetPassword', 'Auth\ChangePasswordController@process');
 });
 
-Route::prefix('notes')->group(function () {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'notes'], function () {
     Route::get('/', 'NoteController@index');
 });
 
-Route::prefix('tags')->group(function () {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {
     Route::get('/', 'TagController@index');
     Route::post('/', 'TagController@create');
     Route::put('/', 'TagController@update');
