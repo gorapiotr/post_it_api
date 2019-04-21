@@ -32,5 +32,4 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {
     Route::post('/', 'TagController@create');
     Route::put('/', 'TagController@update');
     Route::delete('/', 'TagController@remove');
-
 });
