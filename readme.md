@@ -1,4 +1,4 @@
-##Post-it app
+## Post-it app
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/gorapiotr/post_it_api.svg?branch=master" alt="Build Status"></a>
