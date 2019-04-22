@@ -8,23 +8,42 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class ChangePasswordController
+ * @package App\Http\Controllers\Auth
+ */
 class ChangePasswordController extends Controller
 {
+    /**
+     * @param ChangePasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function process(ChangePasswordRequest $request)
     {
         return $this->getPasswordResetTableRow($request)->count() > 0 ? $this->changePassword($request) : $this->tokenNotFoundResponse();
     }
 
+    /**
+     * @param $request
+     * @return \Illuminate\Database\Query\Builder
+     */
     private function getPasswordResetTableRow($request)
     {
         return DB::table('password_resets')->where(['email' => $request->email, 'token' => $request->resetToken]);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     private function tokenNotFoundResponse()
     {
         return response()->json(['error' => 'Token or Email is incorrect'], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
+    /**
+     * @param $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     private function changePassword($request)
     {
         $user = User::whereEmail($request->email)->first();

@@ -11,15 +11,31 @@ use App\Presenters\Note\NotePresenter;
 use App\Presenters\Note\NotesListPresenter;
 use App\Repositories\Note\NoteInterface;
 
+/**
+ * Class NoteController
+ * @package App\Http\Controllers
+ */
 class NoteController extends Controller
 {
+    /**
+     * @var NoteInterface
+     */
     public $note;
 
+    /**
+     * NoteController constructor.
+     * @param NoteInterface $note
+     */
     public function __construct(NoteInterface $note)
     {
         $this->note = $note;
     }
 
+    /**
+     * Get all notes
+     *
+     * @return NotesListPresenter
+     */
     public function index()
     {
         $notes = $this->note->getAll();
@@ -27,6 +43,12 @@ class NoteController extends Controller
         return new NotesListPresenter($notes);
     }
 
+    /**
+     * Show note by id
+     *
+     * @param int $noteId
+     * @return NotePresenter
+     */
     public function show(int $noteId)
     {
         $note = $this->note->find($noteId);
@@ -34,6 +56,12 @@ class NoteController extends Controller
         return new NotePresenter($note);
     }
 
+    /**
+     * Create new instance Note
+     *
+     * @param CreateNoteRequest $request
+     * @return NotePresenter
+     */
     public function create(CreateNoteRequest $request)
     {
         $note = new Note();
@@ -47,6 +75,12 @@ class NoteController extends Controller
         return new NotePresenter($note);
     }
 
+    /**
+     * Update note
+     *
+     * @param UpdateNoteRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(UpdateNoteRequest $request)
     {
         $note = $this->note->find($request->id);
@@ -56,6 +90,12 @@ class NoteController extends Controller
         return response()->json(['success' => $response]);
     }
 
+    /**
+     * Remove note
+     *
+     * @param RemoveNoteRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function remove(RemoveNoteRequest $request)
     {
         $note = $this->note->find($request->id);
@@ -63,6 +103,12 @@ class NoteController extends Controller
         return response()->json(['success' => $response]);
     }
 
+    /**
+     * Get all notes comments
+     *
+     * @param int $noteId
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getNotesComponents(int $noteId)
     {
         return response()->json($this->note->find($noteId)->comments->toArray());

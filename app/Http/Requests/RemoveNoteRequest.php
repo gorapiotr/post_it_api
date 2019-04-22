@@ -13,9 +13,6 @@ class RemoveNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        /**
-         * todo: change when auth
-         */
         return true;
     }
 

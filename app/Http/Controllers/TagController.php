@@ -9,15 +9,31 @@ use App\Presenters\Tag\TagsListPresenter;
 use App\Repositories\Tag\TagInterface;
 use App\Tag;
 
+/**
+ * Class TagController
+ * @package App\Http\Controllers
+ */
 class TagController extends Controller
 {
+    /**
+     * @var TagInterface
+     */
     public $tag;
 
+    /**
+     * TagController constructor.
+     * @param TagInterface $tag
+     */
     public function __construct(TagInterface $tag)
     {
         $this->tag = $tag;
     }
 
+    /**
+     * Get all tags
+     *
+     * @return TagsListPresenter
+     */
     public function index()
     {
         $tags = $this->tag->getAll();
@@ -25,6 +41,12 @@ class TagController extends Controller
         return new TagsListPresenter($tags);
     }
 
+    /**
+     * Update tag
+     *
+     * @param UpdateTagRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(UpdateTagRequest $request)
     {
         $tag = $this->tag->find($request->id);
@@ -34,6 +56,12 @@ class TagController extends Controller
         return response()->json(['success' => $response]);
     }
 
+    /**
+     * Create new tag
+     *
+     * @param CreateTagRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(CreateTagRequest $request)
     {
         $tag = new Tag();
@@ -42,6 +70,12 @@ class TagController extends Controller
         return response()->json(['success' => $response]);
     }
 
+    /**
+     * Remove tag
+     *
+     * @param RemoveTagRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function remove(RemoveTagRequest $request)
     {
         $tag = $this->tag->find($request->id);

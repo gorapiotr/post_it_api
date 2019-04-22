@@ -11,8 +11,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class ResetPasswordController
+ * @package App\Http\Controllers\Auth
+ */
 class ResetPasswordController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function sendEmail(Request $request)
     {
         if (!$this->validateEmail($request->email)) {
@@ -22,12 +30,19 @@ class ResetPasswordController extends Controller
         return $this->successResponse();
     }
 
+    /**
+     * @param $email
+     */
     public function send($email)
     {
         $token = $this->createToken($email);
         Mail::to($email)->send(new ResetPasswordMail($token));
     }
 
+    /**
+     * @param $email
+     * @return mixed|string
+     */
     public function createToken($email)
     {
         $oldToken = DB::table('password_resets')->where('email', $email)->first();
@@ -39,6 +54,10 @@ class ResetPasswordController extends Controller
         return $token;
     }
 
+    /**
+     * @param $token
+     * @param $email
+     */
     public function saveToken($token, $email)
     {
         DB::table('password_resets')->insert([
@@ -47,11 +66,18 @@ class ResetPasswordController extends Controller
             'created_at' => Carbon::now()]);
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public function validateEmail($email)
     {
         return !!User::where('email', $email)->first();
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function failedResponse()
     {
         return response()->json([
@@ -59,6 +85,9 @@ class ResetPasswordController extends Controller
         ], Response::HTTP_NOT_FOUND);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function successResponse()
     {
         return response()->json([
