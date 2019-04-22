@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Tests\Utils\GenerateToken;
 
 
-class NoteTest extends TestCase
+class TagTest extends TestCase
 {
     use GenerateToken;
 
@@ -21,18 +21,20 @@ class NoteTest extends TestCase
      *
      * @return void
      */
-    public function testGetNotes()
+    public function testGetTags()
     {
-
         $response = $this->withoutMiddleware()
             ->json(
-                'GET',
-                'api/notes',
-                [],
+                'POST',
+                'api/tags',
+                ['id' => 1, 'name' => 'newName1'],
                 ['Authorization' => 'Bearer ' . $this->getToken()]
             )
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->decodeResponseJson('success');
 
-        $response->assertStatus(200);
+        $this->assertEquals(true, $response, 'Update should be successful');
     }
+
+
 }
