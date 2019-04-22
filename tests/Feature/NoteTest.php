@@ -2,14 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Tests\Utils\GenerateToken;
 
 
 class NoteTest extends TestCase
 {
-    use RefreshDatabase, GenerateToken;
+    use GenerateToken;
 
     /**
      * A basic test example.
