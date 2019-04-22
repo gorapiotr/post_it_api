@@ -24,6 +24,8 @@ Route::group([], function () {
 Route::group(['middleware' => 'auth:api', 'prefix' => 'notes'], function () {
     Route::get('/', 'NoteController@index');
     Route::get('/{id}', 'NoteController@show');
+    Route::get('/{id}/comments', 'NoteController@getNotesComponents');
+    Route::put('/', 'NoteController@update');
     Route::post('/', 'NoteController@create');
 });
 
@@ -37,4 +39,8 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {
 Route::group(['middleware' => 'auth:api', 'prefix' => 'positions'], function () {
     Route::post('/', 'PositionController@create');
     Route::put('/', 'PositionController@update');
+});
+
+Route::group(['middleware' => 'auth:api', 'prefix' => 'comments'], function () {
+    Route::post('/', 'CommentController@create');
 });

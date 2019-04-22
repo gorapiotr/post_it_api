@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateNoteRequest;
+use App\Http\Requests\UpdateNoteRequest;
 use App\Note;
 use App\Presenters\Note\NotePresenter;
 use App\Presenters\Note\NotesListPresenter;
@@ -42,5 +43,19 @@ class NoteController extends Controller
         }));
 
         return new NotePresenter($note);
+    }
+
+    public function update(UpdateNoteRequest $request)
+    {
+        $note = $this->note->find($request->id);
+        $note->fill($request->all());
+        $response = $note->save();
+
+        return response()->json(['success' => $response]);
+    }
+
+    public function getNotesComponents(int $noteId)
+    {
+        return response()->json($this->note->find($noteId)->comments->toArray());
     }
 }

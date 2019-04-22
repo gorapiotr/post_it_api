@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\PositionRepoServiceProvider;
 use App\Providers\TagRepoServiceProvider;
 
 return [
@@ -183,6 +184,8 @@ return [
         App\Providers\NoteRepoServiceProvider::class,
         App\Providers\TagRepoServiceProvider::class,
         App\Providers\PositionRepoServiceProvider::class,
+        App\Providers\CommentRepoServiceProvider::class,
+
     ],
 
     /*
