@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\RemoveCommentRequest;
+use App\Http\Requests\RemoveTagRequest;
 use App\Note;
 use App\Presenters\Note\NotePresenter;
 use App\Repositories\Comment\CommentInterface;
@@ -25,6 +27,13 @@ class CommentController extends Controller
         $comment->fill($request->all());
         $response = $comment->save();
 
+        return response()->json(['success' => $response]);
+    }
+
+    public function remove(RemoveCommentRequest $request)
+    {
+        $comment = $this->comment->find($request->id);
+        $response = $comment->delete();
         return response()->json(['success' => $response]);
     }
 }

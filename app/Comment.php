@@ -19,4 +19,9 @@ class Comment extends Model
     {
         return $this->hasOne('App\Note');
     }
+
+    public function findComment($id)
+    {
+        return static::find($id);
+    }
 }

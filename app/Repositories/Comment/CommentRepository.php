@@ -12,4 +12,9 @@ class CommentRepository implements CommentInterface
     {
         $this->comment = $comment;
     }
+
+    public function find($id)
+    {
+        return $this->comment->findComment($id);
+    }
 }

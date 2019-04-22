@@ -44,4 +44,5 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'positions'], function () 
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'comments'], function () {
     Route::post('/', 'CommentController@create');
+    Route::delete('/', 'CommentController@remove');
 });
