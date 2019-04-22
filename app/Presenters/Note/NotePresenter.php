@@ -34,7 +34,8 @@ class NotePresenter extends Resource
                     'id' => $item->id,
                     'text' => $item->text,
                     'author_id' => $item->user_id,
-                    'author' => $item->user->name
+                    'author' => $item->user->name,
+                    'created_at' => $item->created_at->toDateTimeString()
                 ];
             })
         ];

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class PositionsTableSeeder extends Seeder
 {
@@ -14,25 +15,29 @@ class PositionsTableSeeder extends Seeder
         DB::table('positions')->insert([
             'note_id' => 1,
             'text' => 'Lorem ipsum vulputate scelerisque mattis fames.',
-            'done' => true
+            'done' => true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('positions')->insert([
             'note_id' => 1,
             'text' => 'Lorem ipsum luctus torquent consectetur felis augue.',
-            'done' => false
+            'done' => false,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('positions')->insert([
             'note_id' => 2,
             'text' => 'Lorem ipsum lacinia ipsum et curabitur, nam porta ornare arcu platea, dictum vivamus quisque tempus.',
-            'done' => true
+            'done' => true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('positions')->insert([
             'note_id' => 3,
             'text' => 'Lorem ipsum eu.',
-            'done' => false
+            'done' => false,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 }
