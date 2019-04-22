@@ -33,6 +33,7 @@ class NotePresenter extends Resource
                 return [
                     'id' => $item->id,
                     'text' => $item->text,
+                    'author_id' => $item->user_id,
                     'author' => $item->user->name
                 ];
             })

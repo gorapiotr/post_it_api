@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateNoteRequest;
+use App\Http\Requests\RemoveNoteRequest;
+use App\Http\Requests\RemoveTagRequest;
 use App\Http\Requests\UpdateNoteRequest;
 use App\Note;
 use App\Presenters\Note\NotePresenter;
@@ -51,6 +53,13 @@ class NoteController extends Controller
         $note->fill($request->all());
         $response = $note->save();
 
+        return response()->json(['success' => $response]);
+    }
+
+    public function remove(RemoveNoteRequest $request)
+    {
+        $note = $this->note->find($request->id);
+        $response = $note->delete();
         return response()->json(['success' => $response]);
     }
 

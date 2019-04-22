@@ -17,6 +17,7 @@ class UserLoginPresenter extends Resource
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
             'user' => $this->name,
+            'id' => $this->id
         ];
         return $return;
     }

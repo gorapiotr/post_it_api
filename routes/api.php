@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'notes'], function () {
     Route::get('/{id}/comments', 'NoteController@getNotesComponents');
     Route::put('/', 'NoteController@update');
     Route::post('/', 'NoteController@create');
+    Route::delete('/', 'NoteController@remove');
 });
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {

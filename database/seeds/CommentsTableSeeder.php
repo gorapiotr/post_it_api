@@ -25,8 +25,14 @@ class CommentsTableSeeder extends Seeder
 
         DB::table('comments')->insert([
             'note_id' => 1,
-            'user_id' => 1,
+            'user_id' => 2,
             'text' => 'Third comment :(',
+        ]);
+
+        DB::table('comments')->insert([
+            'note_id' => 1,
+            'user_id' => 2,
+            'text' => 'Lorem',
         ]);
     }
 }
