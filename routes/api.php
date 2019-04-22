@@ -11,9 +11,7 @@
 |
 */
 
-Route::group([
-    'middleware' => 'api',
-], function () {
+Route::group([], function () {
     Route::post('login', 'Auth\AuthController@login');
     Route::post('signup', 'Auth\AuthController@signup');
     Route::post('logout', 'Auth\AuthController@logout');
@@ -25,6 +23,7 @@ Route::group([
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'notes'], function () {
     Route::get('/', 'NoteController@index');
+    Route::post('/', 'NoteController@create');
 });
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {

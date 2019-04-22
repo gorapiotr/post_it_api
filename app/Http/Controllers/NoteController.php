@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateNoteRequest;
+use App\Note;
 use App\Presenters\Note\NotesListPresenter;
 use App\Repositories\Note\NoteInterface;
 
@@ -19,5 +21,18 @@ class NoteController extends Controller
         $notes = $this->note->getAll();
 
         return new NotesListPresenter($notes);
+    }
+
+    public function create(CreateNoteRequest $request)
+    {
+        $note = new Note();
+        $note->user_id = auth()->id();
+        $note->fill($request->all());
+        $response = $note->save();
+        $note->tags()->attach(collect($request->tags)->map(function ($tag) {
+            return $tag['id'];
+        }));
+
+        return response()->json(['success' => $response]);
     }
 }
