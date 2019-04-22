@@ -23,6 +23,7 @@ Route::group([], function () {
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'notes'], function () {
     Route::get('/', 'NoteController@index');
+    Route::get('/{id}', 'NoteController@show');
     Route::post('/', 'NoteController@create');
 });
 
@@ -34,5 +35,6 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'tags'], function () {
 });
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'positions'], function () {
-    Route::post('/', 'PositionController@update');
+    Route::post('/', 'PositionController@create');
+    Route::put('/', 'PositionController@update');
 });

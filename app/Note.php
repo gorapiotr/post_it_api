@@ -35,4 +35,9 @@ class Note extends Model
     {
         return static::all();
     }
+
+    public function findNote($id)
+    {
+        return static::find($id);
+    }
 }

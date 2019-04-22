@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionsRequest;
+use App\Position;
 use App\Repositories\Position\PositionInterface;
 use Illuminate\Http\Request;
 
@@ -13,6 +15,18 @@ class PositionController extends Controller
     public function __construct(PositionInterface $position)
     {
         $this->position = $position;
+    }
+
+    public function create(CreatePositionRequest $request)
+    {
+        collect($request->positions)->map(function ($position) use ($request) {
+            $newPosition = new Position();
+            $newPosition->fill($position);
+            $newPosition->note_id = $request->note_id;
+            $newPosition->save();
+        });
+
+        return response()->json($request->toArray());
     }
 
     public function update(UpdatePositionsRequest $request)
