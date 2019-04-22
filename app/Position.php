@@ -44,7 +44,7 @@ class Position extends Model
      * @param $ids
      * @return mixed
      */
-    public function findPositions(Array $ids) {
+    public function findPositions($ids) {
         return static::find($ids);
     }
 }

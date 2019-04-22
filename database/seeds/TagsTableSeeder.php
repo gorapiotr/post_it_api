@@ -18,5 +18,17 @@ class TagsTableSeeder extends Seeder
         DB::table('tags')->insert([
             'name' => 'High',
         ]);
+
+        DB::table('tags')->insert([
+            'name' => 'Sport',
+        ]);
+
+        DB::table('tags')->insert([
+            'name' => 'News',
+        ]);
+
+        DB::table('tags')->insert([
+            'name' => 'Important',
+        ]);
     }
 }

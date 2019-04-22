@@ -22,6 +22,21 @@ class TagsNotesTableSeeder extends Seeder
         ]);
 
         DB::table('tags_notes')->insert([
+            'tag_id' => 3,
+            'note_id' => 1
+        ]);
+
+        DB::table('tags_notes')->insert([
+            'tag_id' => 4,
+            'note_id' => 1
+        ]);
+
+        DB::table('tags_notes')->insert([
+            'tag_id' => 5,
+            'note_id' => 1
+        ]);
+
+        DB::table('tags_notes')->insert([
             'tag_id' => 2,
             'note_id' => 1
         ]);

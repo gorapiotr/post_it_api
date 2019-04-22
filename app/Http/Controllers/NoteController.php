@@ -85,6 +85,9 @@ class NoteController extends Controller
     {
         $note = $this->note->find($request->id);
         $note->fill($request->all());
+        $note->tags()->sync(collect($request->tags)->map(function ($tag) {
+            return $tag['id'];
+        }));
         $response = $note->save();
 
         return response()->json(['success' => $response]);
