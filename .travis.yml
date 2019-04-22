@@ -17,6 +17,7 @@ before_script:
   - composer install --no-interaction
   - cp .env.travis .env
   - php artisan migrate:fresh --seed
+  - php artisan jwt:secret
 
 script:
   - vendor/bin/phpunit --coverage-text
